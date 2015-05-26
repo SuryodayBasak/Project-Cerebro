@@ -58,7 +58,7 @@ public class RecorderActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_recorder);
 
         //points = new ArrayList<TGEegPower>();
         //db = new frequencyTable(this);
