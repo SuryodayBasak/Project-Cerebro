@@ -1,9 +1,11 @@
 package bci.cerebro;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
@@ -18,12 +20,14 @@ import com.neurosky.thinkgear.TGDevice;
 import com.neurosky.thinkgear.TGEegPower;
 import com.neurosky.thinkgear.TGRawMulti;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 
-public class RecorderActivity extends ActionBarActivity {
+public class RecorderActivity extends Activity {
 
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_DISABLE_BT = 0;
@@ -54,6 +58,15 @@ public class RecorderActivity extends ActionBarActivity {
     TextView channel6;
     TextView channel7;
     TextView channel8;
+
+    int lowAlpha;
+    int highAlpha;
+    int lowBeta;
+    int highBeta;
+    int lowGamma;
+    int midGamma;
+    int Delta;
+    int Theta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,30 +239,32 @@ public class RecorderActivity extends ActionBarActivity {
                     case TGDevice.MSG_EEG_POWER:
                         fbands = (TGEegPower)msg.obj;
                         //points.add(fbands);
-                        //myTextView = (TextView) findViewById(R.id.ch1);
-                        //myTextView.setText("Delta " + fbands.delta);
+
                         channel1.setText("Delta: " + fbands.delta);
-                        //myTextView = (TextView) findViewById(R.id.ch2);
-                        //myTextView.setText("High Alpha " + fbands.highAlpha);
+                        Delta = fbands.delta;
+
                         channel2.setText("High Alpha: " + fbands.highAlpha);
-                        //myTextView = (TextView) findViewById(R.id.ch3);
-                        //myTextView.setText("High Beta " + fbands.highBeta);
+                        highAlpha = fbands.highAlpha;
+
                         channel3.setText("High Beta: " + fbands.highBeta);
-                        //myTextView = (TextView) findViewById(R.id.ch4);
-                        //myTextView.setText("Low Alpha " + fbands.lowAlpha);
+                        highBeta = fbands.highBeta;
+
                         channel4.setText("Low Alpha: " + fbands.lowAlpha);
-                        //myTextView = (TextView) findViewById(R.id.ch5);
-                        //myTextView.setText("Low Beta " + fbands.lowBeta);
+                        lowAlpha = fbands.lowAlpha;
+
                         channel5.setText("Low Beta: " + fbands.lowBeta);
-                        //myTextView = (TextView) findViewById(R.id.ch6);
-                        //myTextView.setText("Low Gamma " + fbands.lowGamma);
+                        lowBeta = fbands.lowBeta;
+
                         channel6.setText("Low Gamma: " + fbands.lowGamma);
-                        //myTextView = (TextView) findViewById(R.id.ch7);
-                        //myTextView.setText("Mid Gamma " + fbands.midGamma);
+                        lowGamma = fbands.lowGamma;
+
                         channel7.setText("Mid Gamma: " + fbands.midGamma);
-                        //myTextView = (TextView) findViewById(R.id.ch8);
-                        //myTextView.setText("Theta " + fbands.theta);
+                        midGamma = fbands.midGamma;
+
                         channel8.setText("Theta: " + fbands.theta);
+                        Theta = fbands.theta;
+
+                        saveData(lowAlpha,highAlpha,lowBeta,highBeta,lowGamma,midGamma,Delta,Theta);
                         break;
                     case TGDevice.MSG_LOW_BATTERY:
                         Toast.makeText(getApplicationContext(), "Low battery!",Toast.LENGTH_SHORT).show();
@@ -262,6 +277,48 @@ public class RecorderActivity extends ActionBarActivity {
     };
 
 
+    public void saveData(int argLowAlpha, int argHighAlpha, int argLowBeta, int argHighBeta, int argLowGamma, int argMidGamma, int argDelta, int argTheta) {
+        String filename = "/sdcard/myfile.txt";
+        //String string = "1,2,3,4\n";
+        FileOutputStream outputStream;
+
+        try {
+            File sdCard = Environment.getExternalStorageDirectory();
+            File dir = new File(sdCard.getAbsolutePath() + "/cerebro_files/");
+            dir.mkdirs();
+
+            File file = new File(dir, "filename1");
+            //Toast.makeText(getApplicationContext(), "init file",Toast.LENGTH_SHORT).show();
+
+            FileOutputStream f = new FileOutputStream(file, true);
+
+            //Toast.makeText(getApplicationContext(), "got output stream",Toast.LENGTH_SHORT).show();
+
+            //String strLowAlpha = new Integer(lowAlpha).toString();
+            String strHighAlpha = new Integer(argHighAlpha).toString();
+            String strLowBeta = new Integer(argLowBeta).toString();
+            String strHighBeta = new Integer(argHighBeta).toString();
+            String strLowGamma = new Integer(argLowGamma).toString();
+            String strMidGamma = new Integer(argMidGamma).toString();
+            String strDelta = new Integer(argDelta).toString();
+            String strTheta = new Integer(argTheta).toString();
+
+            //string1 = string1 + "\n";
+
+            String strCSV = new Integer(argLowAlpha).toString();
+
+            strCSV = strCSV+','+strHighAlpha+','+strLowBeta+','+strHighBeta+','+strLowGamma+','+strMidGamma+','+strDelta+','+strTheta+'\n';
+
+            //f.write(string.getBytes());
+            //bf.write(passData.getBytes());
+            f.write(strCSV.getBytes());
+            //Toast.makeText(getApplicationContext(), "Done writing",Toast.LENGTH_SHORT).show();
+            f.close();
+            //Toast.makeText(getApplicationContext(), "File buffer closed",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     void assignVariables(){
         btSelect = (Switch) findViewById(R.id.btSwitch);
