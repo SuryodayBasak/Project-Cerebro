@@ -131,9 +131,7 @@ public class RecorderActivity extends Activity {
                     }
 
                     else{
-
-                        Intent disableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                        startActivityForResult(disableBtIntent, REQUEST_DISABLE_BT);
+                        mBluetoothAdapter.disable();
                     }
 
                 }
