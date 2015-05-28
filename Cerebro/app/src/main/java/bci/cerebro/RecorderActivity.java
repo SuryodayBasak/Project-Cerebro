@@ -29,6 +29,9 @@ import java.util.Set;
 
 public class RecorderActivity extends Activity {
 
+    /*
+    Move the bluetooth handling methods to the switch on/off block.
+     */
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_DISABLE_BT = 0;
     int pairedFlag = 0;
