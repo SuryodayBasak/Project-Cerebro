@@ -35,12 +35,14 @@ public class RecorderActivity extends Activity {
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_DISABLE_BT = 0;
     int pairedFlag = 0;
+    int fileCountFlag = 0;
 
     BluetoothAdapter mBluetoothAdapter;
     Switch btSelect;
     TextView pairedIndicator;
     Set<BluetoothDevice> pairedDevices;
     List<String> list;
+    String filename = "newfile.csv";
 
     TGRawMulti rawData;
     TGDevice tgDevice;
@@ -292,24 +294,27 @@ public class RecorderActivity extends Activity {
 
     public void saveData(int argLowAlpha, int argHighAlpha, int argLowBeta, int argHighBeta, int argLowGamma, int argMidGamma, int argDelta, int argTheta) {
         //String filename = "/sdcard/myfile.txt";
-        String filename = "file";
-        String fileext = ".txt";
+        //String filename = "file";
+        //String fileext = ".txt";
         //String string = "1,2,3,4\n";
-        FileOutputStream outputStream;
+        //FileOutputStream outputStream;
 
         try {
             File sdCard = Environment.getExternalStorageDirectory();
             File dir = new File(sdCard.getAbsolutePath() + "/cerebro_files/");
             dir.mkdirs();
 
-            File[] files = dir.listFiles();
-            int numberOfFiles=files.length;
+            if (fileCountFlag == 0) {
+                File[] files = dir.listFiles();
+                int numberOfFiles = files.length;
+                String index = new Integer(numberOfFiles + 1).toString();
+                Toast.makeText(getApplicationContext(), "Number of files is: "+index, Toast.LENGTH_SHORT).show();
+                filename = "file" + index + ".csv";
+                fileCountFlag = 1;
+            }
 
-            String index= new Integer(numberOfFiles+1).toString();
-            File file = new File(dir, "filename1.csv"+index);
-
-            Toast.makeText(getApplicationContext(), "hello",Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), index,Toast.LENGTH_SHORT).show();
+            //File file = new File(dir, "filename1.csv"+index);
+            File file = new File(dir, filename);
             //Toast.makeText(getApplicationContext(), "init file",Toast.LENGTH_SHORT).show();
 
             FileOutputStream f = new FileOutputStream(file, true);
