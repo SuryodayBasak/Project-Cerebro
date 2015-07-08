@@ -61,6 +61,7 @@ public class RecorderActivity extends Activity {
     TextView channel6;
     TextView channel7;
     TextView channel8;
+    TextView rawVal;
 
     int lowAlpha;
     int highAlpha;
@@ -237,6 +238,17 @@ public class RecorderActivity extends Activity {
                     //tv.append("Blink: " + msg.arg1 + "\n");
                         //Toast.makeText(getApplicationContext(), "Ha! You blinked :P",Toast.LENGTH_SHORT).show();
                         break;
+
+
+                    case TGDevice.MSG_RAW_MULTI:
+                        TGRawMulti rawM = (TGRawMulti)msg.obj;
+                        //tv.append("Raw1: " + rawM.ch1 + "\nRaw2: " + rawM.ch2);
+                        Toast.makeText(getApplicationContext(), "Got raw",Toast.LENGTH_SHORT).show();
+                        case TGDevice.MSG_RAW_DATA:
+
+                        //int rawValue = msg.arg1;
+                        //break;
+
                     case TGDevice.MSG_EEG_POWER:
                         fbands = (TGEegPower)msg.obj;
                         //points.add(fbands);
@@ -279,7 +291,9 @@ public class RecorderActivity extends Activity {
 
 
     public void saveData(int argLowAlpha, int argHighAlpha, int argLowBeta, int argHighBeta, int argLowGamma, int argMidGamma, int argDelta, int argTheta) {
-        String filename = "/sdcard/myfile.txt";
+        //String filename = "/sdcard/myfile.txt";
+        String filename = "file";
+        String fileext = ".txt";
         //String string = "1,2,3,4\n";
         FileOutputStream outputStream;
 
@@ -288,7 +302,14 @@ public class RecorderActivity extends Activity {
             File dir = new File(sdCard.getAbsolutePath() + "/cerebro_files/");
             dir.mkdirs();
 
-            File file = new File(dir, "filename1");
+            File[] files = dir.listFiles();
+            int numberOfFiles=files.length;
+
+            String index= new Integer(numberOfFiles+1).toString();
+            File file = new File(dir, "filename1.csv"+index);
+
+            Toast.makeText(getApplicationContext(), "hello",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), index,Toast.LENGTH_SHORT).show();
             //Toast.makeText(getApplicationContext(), "init file",Toast.LENGTH_SHORT).show();
 
             FileOutputStream f = new FileOutputStream(file, true);
@@ -318,6 +339,7 @@ public class RecorderActivity extends Activity {
             //Toast.makeText(getApplicationContext(), "File buffer closed",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "failed to write",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -338,5 +360,7 @@ public class RecorderActivity extends Activity {
         channel6 = (TextView) findViewById(R.id.ch6);
         channel7 = (TextView) findViewById(R.id.ch7);
         channel8 = (TextView) findViewById(R.id.ch8);
+
+        rawVal = (TextView) findViewById(R.id.raw);
     }
 }

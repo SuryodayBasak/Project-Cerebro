@@ -151,4 +151,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="raw"
+        android:id="@+id/raw"
+        android:layout_above="@+id/attentionLabel"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
