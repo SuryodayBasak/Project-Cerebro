@@ -163,4 +163,43 @@
         android:layout_above="@+id/attentionLabel"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Select Dataset"
+        android:id="@+id/datasetSelectLabel"
+        android:gravity="left"
+        android:layout_below="@+id/mindwaveStatus"
+        android:layout_alignLeft="@+id/titleLabel"
+        android:layout_alignStart="@+id/titleLabel"
+        android:layout_marginTop="39dp" />
+
+    <Spinner
+        android:layout_width="170dp"
+        android:layout_height="25dp"
+        android:id="@+id/spinner"
+        android:layout_alignBottom="@+id/datasetSelectLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Add Dataset"
+        android:id="@+id/datasetAddLabel"
+        android:gravity="left"
+        android:layout_below="@+id/datasetSelectLabel"
+        android:layout_alignLeft="@+id/datasetSelectLabel"
+        android:layout_alignStart="@+id/datasetSelectLabel" />
+
+    <EditText
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:hint="Enter New Dataset"
+        android:textSize="10dp"
+        android:id="@+id/datasetAddField"
+        android:layout_below="@+id/datasetSelectLabel"
+        android:layout_alignRight="@+id/spinner"
+        android:layout_alignEnd="@+id/spinner" />
+
 </RelativeLayout>
