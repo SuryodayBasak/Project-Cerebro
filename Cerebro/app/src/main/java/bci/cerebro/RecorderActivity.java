@@ -11,6 +11,8 @@ import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -43,6 +45,7 @@ public class RecorderActivity extends Activity {
     Set<BluetoothDevice> pairedDevices;
     List<String> list;
     String filename = "newfile.csv";
+    Button recordNow;
 
     TGRawMulti rawData;
     TGDevice tgDevice;
@@ -116,11 +119,12 @@ public class RecorderActivity extends Activity {
                 }
             }
 
+            /*
             if (mBluetoothAdapter.isEnabled()) {
                 btSelect.setChecked(true);
                 tgDevice = new TGDevice(mBluetoothAdapter, handler);
                 Toast.makeText(getApplicationContext(), "The handler shit is done...",Toast.LENGTH_SHORT).show();
-            }
+            }*/
 
             if(tgDevice.getState() != TGDevice.STATE_CONNECTING && tgDevice.getState() != TGDevice.STATE_CONNECTED)
                 tgDevice.connect(rawEnabled);
@@ -142,6 +146,20 @@ public class RecorderActivity extends Activity {
 
                 }
             });
+
+            recordNow.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // get an image from the camera
+                            if (mBluetoothAdapter.isEnabled()) {
+                                btSelect.setChecked(true);
+                                tgDevice = new TGDevice(mBluetoothAdapter, handler);
+                                Toast.makeText(getApplicationContext(), "The handler shit is done...",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+            );
         }
     }
 
@@ -231,10 +249,10 @@ public class RecorderActivity extends Activity {
                         //mProgress = (ProgressBar) findViewById(R.id.attentionBar);
                         //mProgress.setProgress(msg.arg1);
                         //Toast.makeText(getApplicationContext(), "Attention:"+msg.arg1,Toast.LENGTH_SHORT).show();
-                        attentionIndicator.setText("Attention: "+msg.arg1);
+                        //attentionIndicator.setText("Attention: "+msg.arg1);
                         break;
                     case TGDevice.MSG_MEDITATION:
-                        meditationIndicator.setText("Meditation: "+msg.arg1);
+                        //meditationIndicator.setText("Meditation: "+msg.arg1);
                         break;
                     case TGDevice.MSG_BLINK:
                     //tv.append("Blink: " + msg.arg1 + "\n");
@@ -255,28 +273,28 @@ public class RecorderActivity extends Activity {
                         fbands = (TGEegPower)msg.obj;
                         //points.add(fbands);
 
-                        channel1.setText("Delta: " + fbands.delta);
+                        //channel1.setText("Delta: " + fbands.delta);
                         Delta = fbands.delta;
 
-                        channel2.setText("High Alpha: " + fbands.highAlpha);
+                        //channel2.setText("High Alpha: " + fbands.highAlpha);
                         highAlpha = fbands.highAlpha;
 
-                        channel3.setText("High Beta: " + fbands.highBeta);
+                        //channel3.setText("High Beta: " + fbands.highBeta);
                         highBeta = fbands.highBeta;
 
-                        channel4.setText("Low Alpha: " + fbands.lowAlpha);
+                        //channel4.setText("Low Alpha: " + fbands.lowAlpha);
                         lowAlpha = fbands.lowAlpha;
 
-                        channel5.setText("Low Beta: " + fbands.lowBeta);
+                        //channel5.setText("Low Beta: " + fbands.lowBeta);
                         lowBeta = fbands.lowBeta;
 
-                        channel6.setText("Low Gamma: " + fbands.lowGamma);
+                        //channel6.setText("Low Gamma: " + fbands.lowGamma);
                         lowGamma = fbands.lowGamma;
 
-                        channel7.setText("Mid Gamma: " + fbands.midGamma);
+                        //channel7.setText("Mid Gamma: " + fbands.midGamma);
                         midGamma = fbands.midGamma;
 
-                        channel8.setText("Theta: " + fbands.theta);
+                        //channel8.setText("Theta: " + fbands.theta);
                         Theta = fbands.theta;
 
                         saveData(lowAlpha,highAlpha,lowBeta,highBeta,lowGamma,midGamma,Delta,Theta);
@@ -354,6 +372,9 @@ public class RecorderActivity extends Activity {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         mindWaveIndicator = (TextView) findViewById(R.id.mindwaveStatus);
+
+        recordNow = (Button) findViewById(R.id.recordButton);
+        /*
         attentionIndicator = (TextView) findViewById(R.id.attentionLabel);
         meditationIndicator = (TextView) findViewById(R.id.meditationLabel);
 
@@ -367,5 +388,6 @@ public class RecorderActivity extends Activity {
         channel8 = (TextView) findViewById(R.id.ch8);
 
         rawVal = (TextView) findViewById(R.id.raw);
+        */
     }
 }
