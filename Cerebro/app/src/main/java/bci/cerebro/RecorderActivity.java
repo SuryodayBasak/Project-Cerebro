@@ -102,7 +102,7 @@ public class RecorderActivity extends Activity {
             btSelect.setChecked(true);
             tgDevice = new TGDevice(mBluetoothAdapter, handler);
             Toast.makeText(getApplicationContext(), "The handler shit is done...",Toast.LENGTH_SHORT).show();
-            
+
             list = new ArrayList<>(); //The '<>' indicates String. No need of explicit declaration, it seems.
 
             pairedDevices = mBluetoothAdapter.getBondedDevices();

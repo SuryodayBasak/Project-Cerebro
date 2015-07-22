@@ -217,7 +217,7 @@
         android:layout_marginTop="94dp" />
 
     <Spinner
-        android:layout_width="100dp"
+        android:layout_width="170dp"
         android:layout_height="25dp"
         android:id="@+id/thoughtSelectSpinner"
         android:layout_alignBottom="@+id/selectThoughtLabel"
@@ -245,7 +245,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Add Dataset"
         android:id="@+id/addDatasetButton"
@@ -255,7 +255,7 @@
         android:layout_toEndOf="@+id/pairedStatus" />
 
     <Button
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Add Thought"
         android:id="@+id/addThoughtButton"
