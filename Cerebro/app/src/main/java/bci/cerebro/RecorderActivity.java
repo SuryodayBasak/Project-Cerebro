@@ -99,6 +99,10 @@ public class RecorderActivity extends Activity {
         }
 
         else{
+            btSelect.setChecked(true);
+            tgDevice = new TGDevice(mBluetoothAdapter, handler);
+            Toast.makeText(getApplicationContext(), "The handler shit is done...",Toast.LENGTH_SHORT).show();
+            
             list = new ArrayList<>(); //The '<>' indicates String. No need of explicit declaration, it seems.
 
             pairedDevices = mBluetoothAdapter.getBondedDevices();
@@ -153,9 +157,7 @@ public class RecorderActivity extends Activity {
                         public void onClick(View v) {
                             // get an image from the camera
                             if (mBluetoothAdapter.isEnabled()) {
-                                btSelect.setChecked(true);
-                                tgDevice = new TGDevice(mBluetoothAdapter, handler);
-                                Toast.makeText(getApplicationContext(), "The handler shit is done...",Toast.LENGTH_SHORT).show();
+
                             }
                         }
                     }
