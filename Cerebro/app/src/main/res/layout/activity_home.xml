@@ -18,13 +18,13 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Recorder"
         android:id="@+id/goToRecorder"
-        android:layout_marginBottom="66dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/userselectSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 
 
 
@@ -32,10 +32,9 @@
         android:layout_width="170dp"
         android:layout_height="30dp"
         android:id="@+id/userselectSpinner"
-        android:layout_marginBottom="43dp"
-        android:layout_above="@+id/goToRecorder"
-        android:layout_alignRight="@+id/titleLabel"
-        android:layout_alignEnd="@+id/titleLabel" />
+        android:layout_alignTop="@+id/userselectLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="130dp"
@@ -43,29 +42,18 @@
         android:layout_height="30dp"
         android:text="Select User:"
         android:id="@+id/userselectLabel"
-        android:layout_alignTop="@+id/userselectSpinner"
-        android:layout_alignLeft="@+id/titleLabel"
-        android:layout_alignStart="@+id/titleLabel" />
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/userselectSpinner"
+        android:layout_toStartOf="@+id/userselectSpinner" />
 
-
-
-    <TextView
-        android:layout_width="130dp"
-        android:gravity="center_vertical|left"
-        android:layout_height="30dp"
-        android:text="Add User:"
-        android:id="@+id/adduserLabel"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignLeft="@+id/userselectLabel"
-        android:layout_alignStart="@+id/userselectLabel" />
-
-    <EditText
-        android:layout_width="170dp"
+    <Button
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:hint="Enter New User"
-        android:layout_above="@+id/userselectSpinner"
-        android:layout_alignLeft="@+id/userselectSpinner"
-        android:layout_alignStart="@+id/userselectSpinner" />
+        android:text="Manage Users"
+        android:id="@+id/buttonManageData"
+        android:layout_below="@+id/goToRecorder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
+
 
 </RelativeLayout>

@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".RecorderActivity">
+    android:paddingBottom="20dp"
+    android:id="@+id/recorderLayout">
 
     <TextView android:text="Cerebro"
         android:layout_width="300dp"
@@ -167,110 +168,62 @@
     -->
 
     <TextView
-        android:layout_width="170dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Select Dataset"
+        android:text="Dataset"
         android:id="@+id/datasetSelectLabel"
         android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="26dp"
         android:layout_alignBottom="@+id/datasetSelectSpinner"
-        android:layout_alignLeft="@+id/selectThoughtLabel"
-        android:layout_alignStart="@+id/selectThoughtLabel" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#20659E"/>
 
     <Spinner
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:id="@+id/datasetSelectSpinner"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/mindwaveStatus"
-        android:layout_alignRight="@+id/mindwaveStatus"
-        android:layout_alignEnd="@+id/mindwaveStatus"
-        android:layout_marginTop="43dp" />
+        android:layout_alignRight="@+id/recordButton"
+        android:layout_alignEnd="@+id/recordButton" />
 
     <TextView
-        android:layout_width="170dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Add Dataset"
-        android:id="@+id/datasetAddLabel"
-        android:gravity="center"
-        android:layout_alignTop="@+id/addThoughtLabel"
-        android:layout_alignLeft="@+id/thoughtSelectSpinner"
-        android:layout_alignStart="@+id/thoughtSelectSpinner" />
-
-    <EditText
-        android:layout_width="170dp"
-        android:layout_height="30dp"
-        android:hint="Enter New Dataset"
-        android:textSize="10dp"
-        android:id="@+id/datasetAddField"
-        android:layout_below="@+id/datasetAddLabel"
-        android:layout_alignLeft="@+id/datasetAddLabel"
-        android:layout_alignStart="@+id/datasetAddLabel" />
-
-    <TextView
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:text="Select Thought"
+        android:text="Thought"
         android:id="@+id/selectThoughtLabel"
         android:gravity="center"
-        android:layout_below="@+id/mindwaveStatus"
-        android:layout_toLeftOf="@+id/datasetSelectSpinner"
-        android:layout_toStartOf="@+id/datasetSelectSpinner"
-        android:layout_marginTop="94dp" />
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="5dp"
+        android:layout_below="@+id/datasetSelectLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp"
+        android:textColor="#20659E"/>
 
     <Spinner
-        android:layout_width="100dp"
+        android:layout_width="170dp"
         android:layout_height="25dp"
         android:id="@+id/thoughtSelectSpinner"
-        android:layout_alignBottom="@+id/selectThoughtLabel"
-        android:layout_toRightOf="@+id/selectThoughtLabel"
-        android:layout_toEndOf="@+id/selectThoughtLabel" />
+        android:layout_below="@+id/selectThoughtLabel"
+        android:layout_alignLeft="@+id/recordButton"
+        android:layout_alignStart="@+id/recordButton" />
 
-    <TextView
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:text="Add Thought"
-        android:id="@+id/addThoughtLabel"
-        android:gravity="center"
-        android:layout_above="@+id/thoughtAddField"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="170dp"
-        android:layout_height="30dp"
-        android:hint="Enter New Thought"
-        android:textSize="10dp"
-        android:id="@+id/thoughtAddField"
-        android:layout_above="@+id/addThoughtButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Add Dataset"
-        android:id="@+id/addDatasetButton"
-        android:textSize="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/pairedStatus"
-        android:layout_toEndOf="@+id/pairedStatus" />
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Add Thought"
-        android:id="@+id/addThoughtButton"
-        android:textSize="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/pairedStatus"
-        android:layout_toStartOf="@+id/pairedStatus" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Record this Session"
         android:id="@+id/recordButton"
-        android:layout_marginTop="22dp"
-        android:layout_below="@+id/selectThoughtLabel"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
