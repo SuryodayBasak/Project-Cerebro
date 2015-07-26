@@ -18,9 +18,9 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Recorder"
+        android:text="Record User"
         android:id="@+id/goToRecorder"
         android:layout_below="@+id/userselectSpinner"
         android:layout_centerHorizontal="true"
@@ -47,13 +47,13 @@
         android:layout_toStartOf="@+id/userselectSpinner" />
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Manage Users"
         android:id="@+id/buttonManageData"
         android:layout_below="@+id/goToRecorder"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp" />
+        android:layout_alignLeft="@+id/goToRecorder"
+        android:layout_alignStart="@+id/goToRecorder" />
 
 
 </RelativeLayout>
