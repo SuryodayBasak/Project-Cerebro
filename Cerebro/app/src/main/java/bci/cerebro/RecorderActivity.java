@@ -54,7 +54,7 @@ public class RecorderActivity extends Activity {
     List<TGEegPower> points;
     //EEGPoint current;
     String thought;
-    final boolean rawEnabled = false;
+    final boolean rawEnabled = true;
 
     TextView mindWaveIndicator;
     TextView attentionIndicator;
@@ -80,6 +80,8 @@ public class RecorderActivity extends Activity {
     int midGamma;
     int Delta;
     int Theta;
+
+    //final boolean rawEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,6 +278,7 @@ public class RecorderActivity extends Activity {
                         //break;
 
                     case TGDevice.MSG_EEG_POWER:
+                        //rawDataCount.setText("Something "+ Integer.toString(rawCount));
                         fbands = (TGEegPower)msg.obj;
                         //points.add(fbands);
 
@@ -319,7 +322,7 @@ public class RecorderActivity extends Activity {
                     case TGDevice.MSG_LOW_BATTERY:
                         Toast.makeText(getApplicationContext(), "Low battery!",Toast.LENGTH_SHORT).show();
                         break;
-                    
+
                     default:
                         break;
                 }
