@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +37,8 @@ public class RecorderActivity extends Activity {
     private static final int REQUEST_DISABLE_BT = 0;
     int pairedFlag = 0;
     int fileCountFlag = 0;
+    int rawCount = 0;
+    int rawCountMulti = 0;
 
     BluetoothAdapter mBluetoothAdapter;
     Switch btSelect;
@@ -67,6 +68,9 @@ public class RecorderActivity extends Activity {
     TextView channel7;
     TextView channel8;
     TextView rawVal;
+
+    TextView rawDataCount;
+    TextView rawDataMultiCount;
 
     int lowAlpha;
     int highAlpha;
@@ -261,12 +265,12 @@ public class RecorderActivity extends Activity {
                         //Toast.makeText(getApplicationContext(), "Ha! You blinked :P",Toast.LENGTH_SHORT).show();
                         break;
 
-
+                    /*
                     case TGDevice.MSG_RAW_MULTI:
                         TGRawMulti rawM = (TGRawMulti)msg.obj;
                         //tv.append("Raw1: " + rawM.ch1 + "\nRaw2: " + rawM.ch2);
-                        Toast.makeText(getApplicationContext(), "Got raw",Toast.LENGTH_SHORT).show();
-                        case TGDevice.MSG_RAW_DATA:
+                        Toast.makeText(getApplicationContext(), "Got raw",Toast.LENGTH_SHORT).show();*/
+
 
                         //int rawValue = msg.arg1;
                         //break;
@@ -301,9 +305,21 @@ public class RecorderActivity extends Activity {
 
                         saveData(lowAlpha,highAlpha,lowBeta,highBeta,lowGamma,midGamma,Delta,Theta);
                         break;
+
+                    case TGDevice.MSG_RAW_DATA:
+                        rawCount++;
+                        rawDataCount.setText("RawCount "+ Integer.toString(rawCount));
+                        break;
+
+                    case TGDevice.MSG_RAW_MULTI:
+                        rawCountMulti++;
+                        rawDataCount.setText("RawCountMulti "+ Integer.toString(rawCountMulti));
+                        break;
+
                     case TGDevice.MSG_LOW_BATTERY:
                         Toast.makeText(getApplicationContext(), "Low battery!",Toast.LENGTH_SHORT).show();
                         break;
+                    
                     default:
                         break;
                 }
@@ -391,5 +407,8 @@ public class RecorderActivity extends Activity {
 
         rawVal = (TextView) findViewById(R.id.raw);
         */
+
+        rawDataCount = (TextView) findViewById(R.id.tvRawData);
+        rawDataMultiCount = (TextView) findViewById(R.id.tvRawDataMulti);
     }
 }
